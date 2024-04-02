@@ -7274,6 +7274,77 @@
           U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+2074, U+20AC,
           U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
       }
+
+      /* 추가적인 CSS 스타일링을 원하는 경우 여기에 작성할 수 있습니다. */
+      .Header_hamburger-wrapper__aAWlM {
+        display: none; /* 초기에는 햄버거 아이콘 숨김 */
+        cursor: pointer;
+      }
+
+      .Header_navigation-menus__p_A9O {
+        display: block; /* 초기에는 네비게이션 메뉴 표시 */
+      }
+
+      /* 창 크기가 작을 때 햄버거 메뉴가 보이도록 함 */
+      @media screen and (max-width: 600px) {
+        .Header_folded-navigation-menus__xgZIW {
+          display: none;
+        }
+
+        .Header_hamburger-wrapper__aAWlM {
+          display: block;
+        }
+
+        .Header_navigation-menus__p_A9O {
+          display: none; /* 작은 화면에서는 네비게이션 메뉴를 숨김 */
+        }
+      }
+
+      /* 창 크기가 큰 경우 햄버거 메뉴를 숨기고 기본 네비게이션 메뉴를 보이도록 함 */
+      @media screen and (min-width: 601px) {
+        .Header_hamburger-wrapper__aAWlM {
+          display: none;
+        }
+
+        .Header_folded-navigation-menus__xgZIW {
+          display: flex;
+        }
+      }
+      /* Modal Styles */
+      .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
     </style>
   </head>
   <body>
@@ -7305,28 +7376,6 @@
             </div>
           </div>
         </header>
-        
-        
-        
-        <!-- <header class="Header_Header__bkfyR Header_has-background-color__iWD1w">
-          <div class="Header_content__FPfsl">
-            <div class="Header_title__u692O">Jingi's Portfolio</div>
-            <div class="Header_hamburger-wrapper__aAWlM">
-              <img src="./Potfol_jingi/images/hamburger.svg" alt="" />
-            </div>
-          </div>
-
-          <div
-            class="Header_folded-navigation-menus__xgZIW Header_is-folded__drE3y"
-          >
-            <div class="Header_folded-navigation-menu__tCpbH">About me</div>
-            <div class="Header_folded-navigation-menu__tCpbH">Skills</div>
-            <div class="Header_folded-navigation-menu__tCpbH">Archiving</div>
-            <div class="Header_folded-navigation-menu__tCpbH">Projects</div>
-            <div class="Header_folded-navigation-menu__tCpbH">Career</div>
-          </div>
-        </header> -->
-
         <div class="Masthead_Masthead__AqKEv">
           <div class="Masthead_content__lswMP">
             <div class="Masthead_title__UKtcP">
@@ -7338,7 +7387,7 @@
               DL, ML 등의 최신 기술에 관심을 가지고 있습니다. <br />
             </div>
 
-            <div class="Masthead_find-out-more__8C_Rn">더 알아보기 ↓</div>
+            <div class="Masthead_find-out-more__8C_Rn" onclick="navigateTo('about-me')">더 알아보기 ↓</div>
           </div>
         </div>
         <article class="AboutMe_AboutMe__ysYj_" id="about-me">
@@ -7722,8 +7771,148 @@
                       <span class="Projects_red__r_DWh">Ram 초과</span>를 직접
                       해결해보며 코드 최적화에 대해 생각해 볼 수 있었습니다.
                       <p></p>
-                      <div class="Projects_show-readme-btn__v1p__">
-                        자세히 보기 ▶ README
+
+                      <div class="Projects_show-readme-btn__v1p__" onclick="openModal('modal1')">자세히 보기 ▶ README</div>
+
+                      <!-- The Modal -->
+                      <div id="modal1" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                          <span class="close" onclick="closeModal('modal1')">&times;</span>
+                          <!DOCTYPE html>
+                          <html lang="ko">
+                          <head>
+                          <meta charset="UTF-8">
+                          <title>프로젝트 소개</title>
+                          </head>
+                          <body>
+                          <h1>👋 들어가며</h1>
+                          <p>본 포스팅은 <strong>Finda(주)</strong>와 <strong>We-Meet</strong>에서 제공받은 과제로 주어진 무비 데이터 와 스파크를 활용해 추천시스템을 개발하는 과제입니다.</p>
+                          
+                          <h2>📚 목차</h2>
+                          <ol>
+                          <li>프로젝트 소개</li>
+                          <li>수행기간</li>
+                          <li>프로젝트 흐름도</li>
+                          <li>수행 과정</li>
+                          <li>수행 결과</li>
+                          <li>기대효과 활용분야</li>
+                          <li>추가 성능 개선</li>
+                          <li>한계점 및 향후 개선 방향</li>
+                          <li>참고자료</li>
+                          <li>프로젝트 결과</li>
+                          </ol>
+                          
+                          <h2>🔎 1. 프로젝트 소개</h2>
+                          <p><strong>Item based Rating Prediction with Dot Production and PySpark</strong></p>
+                          <p>대용량 데이터 처리에 적합한 분산병렬처리플랫폼 PySpark 를 사용하여 Dot production 연산을 진행하고, 이를 활용하여 특정 사용자의 영화 평점을 예측해 사용자가 선호할 영화를 추천하는 시스템을 개발한다.</p>
+                          <ul>
+                          <li><strong>프로젝트 달성 목표</strong>: 기존 아이템 기반 협업 필터링에서 dot-production 방식을 접목시켜 보다 정확히 사용자의 영화 선호를 예측하여 추천한다.</li>
+                          <li><strong>필요성 및 기대효과</strong>: 단순 아이템 간의 유사성을 기반으로 사용자에게 아이템을 추천해주는 아이템 기반 협업 필터링 방법은 이미 널리 범용화 되어있습니다. 이에 더 나아가 <code>‘아이템 기반‘ 이더라도 dot-production 방식을 통해 개개인의 사용자 rating 점수를 예측하여 사용자에게 개인화된 아이템을 추천</code>해줄 수 있도록 하기 위해 본 프로젝트를 진행하고자 합니다.</li>
+                          </ul>
+                          
+                          <h2>📔 2. 프로젝트 수행기간</h2>
+                          <p><strong>2023/11/06 ~ 2023/12/11</strong></p>
+                          <img src="https://velog.velcdn.com/images/jingit/post/e5104613-3c66-4bfb-98e8-34659ff1204f/image.png" alt="프로젝트 일정">
+                          <p><a href="https://github.com/Jingik/RecommendationSystem">Github 주소</a></p>
+                          
+                          <h2>📌 3. 프로젝트 흐름도</h2>
+                          <img src="https://velog.velcdn.com/images/jingit/post/249e34a6-01e8-4ddf-97de-381d0f7782c4/image.png" alt="프로젝트 흐름도">
+                          
+                          <h2>📌 4. 프로젝트 수행과정</h2>
+                          <h3>1) 전처리 단계 : 결측치 처리, 파생변수 생성</h3>
+                          <img src="https://velog.velcdn.com/images/jingit/post/cb32fc68-0802-45cb-94b5-544bf0e6b08e/image.png" alt="전처리 단계">
+                          <ul>
+                          <li>Crawling 통해 태그 결측치 Imputation → imputation 실패한 영화 45개 삭제</li>
+                          <li>Crawling 통해 장르 결측치 Imputation → 결측치 모두 imputation 성공</li>
+                          <li>Crawling 통한 파생변수 생성</li>
+                          </ul>
+                          <img src="https://velog.velcdn.com/images/jingit/post/b128d17b-0d1c-4be4-892c-922a059b4b59/image.png" alt="전처리 단계">
+                          <ul>
+                          <li>‘title’ 변수 A, An, The misplace 처리</li>
+                          </ul>
+                          <h3>2) 전처리 단계 : 전처리</h3>
+                          <ul>
+                          <li>Categorical 변수 – <strong>One-Hot Encoding</strong></li>
+                          <li>String 변수 – <strong>불용어 제거, Word2Vec</strong></li>
+                          <li>Numerical 변수 – <strong>Standard Scaling</strong></li>
+                          </ul>
+                          <img src="https://velog.velcdn.com/images/jingit/post/5afe95dd-538d-4a95-bb95-2dc8a20e59e4/image.png" alt="전처리 단계">
+                          
+                          <h3>3) 추천 단계</h3>
+                          <ul>
+                          <li><strong>유사도 계산</strong></li>
+                              <ul>
+                              <li><strong>Euclidean Similarity</strong> : item간 Title/ Genre/ Tag/ Storyline/ All(모든 컬럼 활용) 유사도 계산</li>
+                              <li><strong>Cosine Similarity</strong> : item간 Title/ Genre/ Tag/ Storyline/ All(모든 컬럼 활용) 유사도 계산</li>
+                              <li>유사도 계산 후 Min-Max Scaling을 통해 스케일링, 음수값 제거</li>
+                              </ul>
+                          <li><strong>추천 모델 구현</strong></li>
+                          </ul>
+                          <img src="https://velog.velcdn.com/images/jingit/post/b81d2786-1883-4915-9a06-bd8a2a438971/image.png" alt="추천 단계">
+                          
+                          <h3>4) 평가단계</h3>
+                          <ul>
+                          <li><strong>사용자 개인별 추천</strong></li>
+                          <li>사용자가 보지 않은 영화 중 가장 예측 rating(평점)이 높은 영화 10개 추천</li>
+                              <ul>
+                              <li>사용자가 평가한 rating 정보와 dot-production을 통해 예측한 rating 정보 합침</li>
+                              <li>사용자가 아직 보지 않은 영화 선택</li>
+                              <li>예측한 rating이 높은 순으로 정렬하고, 상위 10개 추천</li>
+                              </ul>
+                          </ul>
+                          <img src="https://velog.velcdn.com/images/jingit/post/f91536ad-9c7d-4f7d-bee9-1126cf448619/image.png" alt="평가단계">
+                          
+                          <h3>5) 프로젝트 수행 과정 중 문제관리</h3>
+                          <img src="https://velog.velcdn.com/images/jingit/post/110dbae3-6c17-4662-a92e-ab8d72183696/image.png" alt="문제관리">
+                          
+                          <h2>📌 5. 수행 결과</h2>
+                          <p><strong>평가 지표 : MAE, MSE, RMSE, Precision, Recall, F1-Score, NDCG</strong></p>
+                          <h3>Case 1. Cosine Similarity</h3>
+                          <img src="https://velog.velcdn.com/images/jingit/post/3e7a1e4c-cd82-4bfe-9c34-21c9d145bda8/image.png" alt="Cosine Similarity 결과">
+                          <p>⸫ <strong>Cosine Similarity</strong> 기반으로 Dot-production하여 Item-based 협업필터링을 진행한 결과, <strong>Genre</strong>를 통한 <strong>One-dot production</strong> 결과를 활용했을 때, 거의 모든 지표에서 가장 <strong>우수한 성능</strong>을 보였다.</p>
+                          
+                          <h3>Case 2. Euclidean Similarity</h3>
+                          <img src="https://velog.velcdn.com/images/jingit/post/dc1340a7-a2f5-425e-baaf-1be491f27014/image.png" alt="Euclidean Similarity 결과">
+                          <p>⸫ <strong>Euclidean Similarity</strong> 기반으로 Dot-production하여 Item-based 협업필터링을 진행한 결과, <strong>Storyline</strong>을 통한 <strong>One-dot production</strong> 결과를 활용했을 때, 많은 지표에서 가장 <strong>우수한 성능</strong>을 보였다.</p>
+                          
+                          <h2>✏️ 6. 기대효과 및 활용 방안</h2>
+                          <ul>
+                          <li><strong>기대효과</strong>: 기존 아이템 기반 협업 필터링의 경우, 단순 아이템 간의 유사성을 기반으로 사용자에게 아이템을 추천해줍니다. 이는 개별 사용자의 선호도를 전혀 반영하지 않으며, cold-start 문제 등을 야기합니다. 하지만, 본 프로젝트에서 구현한 추천 시스템의 경우, 기존 아이템 기반 협업 필터링에서 dot-production 방식을 접목시켜 보다 정확히 <code>사용자의 영화 선호도를 파악하여 추천이 가능합니다.</code></li>
+                          <li><strong>활용분야</strong>: 영화나 드라마 같은 미디어 추천 뿐 아니라, 상품 추천, 음식점 추천, 등 아이템(미디어, 상품, 음식점)에 대한 다양한 정보와 사용자가 이전에 경험했던 아이템에 대한 평가만 있다면 어떤 분야든 본 시스템을 통해 각각의 사용자의 아이템 선호도를 예측하여 정확한 추천이 가능합니다.</li>
+                          </ul>
+                          
+                          <h2>✏️ 7. 추가 성능 개선</h2>
+                          <ul>
+                          <li>Cosine, All-dot production</li>
+                          <li>Cosine, All-dot production –round</li>
+                          <li>Round Coverage</li>
+                          <li>ALS, All-dot</li>
+                          </ul>
+                          <img src="https://velog.velcdn.com/images/jingit/post/d35e8fdf-3367-4260-9d5c-b0fb9c9e0dd3/image.png" alt="추가 성능 개선">
+                          
+                          <h2>🔨 8. 한계점 및 향후 개선 방안</h2>
+                          <ul>
+                          <li><strong>Random Forest를 활용한 변수 중요도 확인</strong>: PySpark에서 지원하는 Random Forest를 활용하여 변수 중요도를 확인하려했지만, PySpark에서는 변수에 대한 중요도가 아닌 결과에 대한 중요도를 도출해주는 기능만 제공함. → 변수중요도를 뽑아 여러 변수의 similarity를 활용하는 multi-dot-production을 수행할 때, 활용하면 보다 사용자의 평점 예측 정확도를 높일 수 있을 것으로 기대됨.</li>
+                          <li><strong>추천 모델 PySpark 미활용</strong>: 추천 모델 전체 과정을 PySpark를 활용할 때, 시간이 매우 오래 소요되어 중간중간 Python을 활용하여 진행함. → 향후 최적화 과정을 통하여 추천 모델 전체 과정을 PySpark를 활용하여 진행하고자 함.</li>
+                          <li><strong>One-Hot Encoding으로 전처리</strong>: One-Hot Encoding은 각각의 카테고리 간의 거리를 모두 1로 (일정한 간격으로) 둔다는 치명적인 단점이 존재함. (예: 장르 변수에서 Horror와 Thriller 사이의 거리(유사도)가 Horror와 Children 사이의 거리보다 가까워야하는데, One-Hot Encoding은 이러한 점을 반영해주지는 못함.) → 향후 더 다양한 Categorical 변수를 전처리(벡터화)하는 방법을 고안 및 활용하고자 함.</li>
+                          </ul>
+                          
+                          <h2>📜 9. 참고자료</h2>
+                          <ul>
+                          <li>Sarwar, Badrul & Karypis, George & Konstan, Joseph & Riedl, John. (2001). Item-based Collaborative Filtering Recommendation Algorithms. Proceedings of ACM World Wide Web Conference.</li>
+                          <li>Shaheen MZ. Memon, Robert Wamala, Ignace H. Kabano, A comparison of imputation methods for categorical data, Informatics in Medicine Unlocked, Volume 42, 2023.</li>
+                          <li>Galli, S., (2021). Feature-engine: A Python package for feature engineering for machine learning. Journal of Open Source Software.</li>
+                          </ul>
+                          
+                          <h2>10. 프로젝트 결과</h2>
+                          <img src="https://velog.velcdn.com/images/jingit/post/2cc06d3e-82e9-4ba0-a6a9-5492b9f77738/image.png" alt="프로젝트 결과">
+                          
+                          </body>
+                          </html>
+                          
+                        </div>
                       </div>
                     </div>
                     <div class="Projects_description___gCV_">
@@ -7869,9 +8058,145 @@
                       만들어 새로운 데이터로 활용하는 등의 새로운 방법을 도전해
                       볼 수 있었습니다.
                       <p></p>
-                      <div class="Projects_show-readme-btn__v1p__">
-                        자세히 보기 ▶ README
+                      <div class="Projects_show-readme-btn__v1p__" onclick="openModal('modal2')">자세히 보기 ▶ README</div>
+                      <!-- 모달 내용 넣기  -->
+                      <div id="modal2" class="modal">
+                        <div class="modal-content">
+                          <span class="close" onclick="closeModal('modal2')">&times;</span>
+                          <!-- <p>모달 내용을 여기에 넣으세요.</p> -->
+                          <h1>👋 들어가며</h1>
+
+                          <p>본 포스팅은 <code>조기 치매 예측 프로젝트</code>로 AIhub에서 제공받은 데이터를 활용해 다양한 딥러닝 기술로 연구한 프로젝트입니다.</p>
+
+                          <h2>📚 목차</h2>
+                          <ol>
+                              <li>프로젝트 소개</li>
+                              <li>수행기간</li>
+                              <li>프로젝트 흐름도</li>
+                              <li>수행 과정</li>
+                              <li>수행 결과</li>
+                              <li>기대효과 활용분야</li>
+                              <li>한계점 및 향후 개선 방향</li>
+                              <li>참고자료</li>
+                          </ol>
+
+                          <h2>🔎 1. 프로젝트 소개</h2>
+
+                          <h3>Wearable-based Lifelog Data Prediction for Dementia</h3>
+
+                          <p>본 프로젝트는 웨어러블 기반 라이프로그 데이터를 활용하여 치매 예측 성능을 향상시키기 위해 다 양한 접근 방식을 탐색하고, 이후 나온 결과를 바탕으로 성능을 높이기 위해 새로운 데이터 생성, 딥러닝 모델 개발 등을 실행한다.</p>
+
+                          <h4>프로젝트 달성 목표</h4>
+                          <p>제공받은 라이프로그 데이터와 다양한 딥러닝 모델을 이용해 최상의 결과를 도출하고, 이를 토대로 <strong>치매 예측 모델의 개발과 활용</strong>에 기여하고자 합니다.</p>
+
+                          <h4>필요성 및 기대효과</h4>
+                          <p>2020년 기준, 65세 이상의 노인 인구 중에서 10% 이상이 치매를 겪고 있으며, 경도 인지 장애와 같은 치매의 초기 단계에 해당하는 질환이 60세 기준으로 20% 이상인 것으로 알려져 있습니다. 치매는 국가적으로도 큰 피해를 주는데 뿐만 아니라 가정 내에서도 큰 영향을 미치기 때문에 이 문제를 꼭 해결해야 합니다. 그러나 현재 치매를 측정하기 위한 방법은 매우 어렵고 비용도 많이 들어가기 때문에 현실적으로 어렵습니다. 따라서, 웨어러블 기반 데이터 수집을 통해 별도의 시간을 투자하지 않고도 수집된 데이터를 기반으로 치매와 경도 인지 장애를 조기에 예측을 가능하게 해 시간과 금액에서 모두 이익을 보려고 합니다.</p>
+
+                          <h2>📔 2. 프로젝트 수행기간</h2>
+                          <img src="https://velog.velcdn.com/images/jingit/post/4bdefcac-e8c6-4981-a1c5-d176f3d8fc42/image.png" alt="프로젝트 수행기간">
+
+                          <p><a href="https://github.com/Jingik/Dementia_prediction_DeepLearning.git">Github 주소</a></p>
+
+                          <h2>📌 3. 프로젝트 흐름도</h2>
+                          <img src="https://velog.velcdn.com/images/jingit/post/77e768cd-bc7e-4b29-af16-412cbc076254/image.png" alt="프로젝트 흐름도">
+
+                          <h2>📌 4. 프로젝트 수행과정</h2>
+
+                          <h3>1) 전처리 단계 : 결측치 처리</h3>
+                          <img src="https://velog.velcdn.com/images/jingit/post/e13059f7-915d-4212-8641-cdd4a91a6479/image.png" alt="결측치 처리">
+                          <ul>
+                              <li>결측치 처리</li>
+                              <li>사용하지 않는 변수 삭제</li>
+                          </ul>
+
+                          <h3>2) 전처리 단계 : 데이터 스케일링</h3>
+                          <img src="https://velog.velcdn.com/images/jingit/post/65945fd7-c078-44b7-b29c-505613192971/image.png" alt="데이터 스케일링">
+                          <ul>
+                              <li>좌측 편향 데이터 - <strong>Log Transform</strong></li>
+                              <li>우측 편향 데이터 - <strong>Quantile Transform</strong></li>
+                              <li>그 외의 데이터 - <strong>RobustScaler</strong></li>
+                          </ul>
+
+                          <h3>3) 전처리 단계 : RandomForest와 차원축소를 이용한 데이터 생성</h3>
+                          <img src="https://velog.velcdn.com/images/jingit/post/5f02f110-5462-4431-8884-d03831ffde48/image.png" alt="RandomForest와 차원축소를 이용한 데이터 생성">
+                          <ul>
+                              <li>Randomfores를 이용해 변수 중요도별 그룹 생성</li>
+                              <li>해당 그룹의 변수들을 PCA를 통해 각각의 그룹 별 변수로 생성</li>
+                          </ul>
+
+                          <h3>4) 전처리 단계</h3>
+                          <h4>1. 라이프로그 시그널 데이터 그래프로 변형</h4>
+                          <img src="https://velog.velcdn.com/images/jingit/post/2f235451-cbca-4308-a747-2bb72d2b6619/image.png" alt="라이프로그 시그널 데이터 그래프로 변형">
+                          <p>공공 데이터로 제공받은 시계열 데이터를 그래프 형태로 변형</p>
+
+                          <h4>2. 임의의 Resnet + VAE 모델을 이용해 변수 생성</h4>
+                          <img src="https://velog.velcdn.com/images/jingit/post/a9734971-d98c-4a8c-b9e1-aae3238f9e47/image.png" alt="Resnet + VAE 모델을 이용해 변수 생성">
+                          <p>AutoEncoder의 특징인 압축과 풀기 과정에서 생성되는 Latent Vector 데이터 활용</p>
+
+                          <h4>3. VAE 모델을 이용한 변수 생성</h4>
+                          <img src="https://velog.velcdn.com/images/jingit/post/6e2a461d-63f3-46f6-8acf-2f8930269cc9/image.png" alt="VAE 모델을 이용한 변수 생성">
+                          <p>AutoEncoder의 특징인 압축과 풀기 과정에서 생성되는 Latent Vector 데이터 활용</p>
+
+                          <h3>5) 딥러닝 모델 구현</h3>
+
+                          <h4>1. LSTM 앙상블 모델 구현</h4>
+                          <img src="https://velog.velcdn.com/images/jingit/post/c0e310f9-5a26-448b-a0b8-627fcf4cf909/image.png" alt="LSTM 앙상블 모델 구현">
+                          <p>Keras를 이용해 Model 구현</p>
+
+                          <h4>2. CNN + LSTM 모델 구현</h4>
+                          <img src="https://velog.velcdn.com/images/jingit/post/ab0e8599-3937-42c2-b3cc-0a0694a4cb9e/image.png" alt="CNN + LSTM 모델 구현">
+                          <p>Keras를 이용해 Model 구현</p>
+
+                          <h4>3. ResNet 모델 구현</h4>
+                          <img src="https://velog.velcdn.com/images/jingit/post/5ea9a3db-aa09-4d18-8e54-442554094c27/image.png" alt="ResNet 모델 구현">
+                          <p>Keras를 이용해 Model 구현</p>
+                          <h2>📌 5. 수행 결과</h2>
+
+                          <p><strong>Case 1. (Resnet+Vae_Latenet) + (Randomforest + PCA) + Processed Data</strong></p>
+                          <img src="https://velog.velcdn.com/images/jingit/post/8ced79fe-d09a-4be3-9178-d61d915beee6/image.png" alt="Case 1">
+                          <p><strong>Case 2. Vae_Latenet + (Randomforest + PCA) + Processed Data</strong></p>
+                          <img src="https://velog.velcdn.com/images/jingit/post/3f252ff4-e5ce-4d41-8d51-573a77ef4ec1/image.png" alt="Case 2">
+                          <p><strong>Case 3. (Resnet+Vae_Latenet) + Processed Data</strong></p>
+                          <img src="https://velog.velcdn.com/images/jingit/post/c169b3d8-6d8b-4e0c-beec-b1feaccf7897/image.png" alt="Case 3">
+                          <p><strong>Case 4. Processed Data</strong></p>
+                          <img src="https://velog.velcdn.com/images/jingit/post/355942dc-fffc-4667-bef2-e6cdfe0534fe/image.png" alt="Case 4">
+
+                          <p>웨어러블 기반 라이프로그 데이터를 활용하여 치매 예측을 수행하는 것은 유효하며, 딥러닝 모델을 활용할 때 높은 예측 성능을 얻을 수 있었습니다. 특히, LSTM 앙상블과 ResNet 모델은 뛰어난 성능을 보여주었습니다.</p>
+                          <p>생체 신호 데이터를 이용해 얻은 Latent Vector가 성능을 높이는데 기여했음을 알 수 있습니다. 이를 통해 사람의 하루 싸이클 생체신호 데이터를 통해 더 정확한 예측이 가능함을 알 수 있습니다.</p>
+                          <p>변수 중요도에 따른 PCA 작업이 성능을 높이는데 기여함을 알 수 있습니다. 특히, 재현율 측면에서 잠재 변수와 차원 축소 변수의 합성이 높은 성능을 보였습니다.</p>
+
+                          <h2>✏️ 6. 기대효과 및 활용 방안</h2>
+
+                          <p><strong>기대효과</strong></p>
+                          <p>해당 프로젝트를 통해 웨어러블 라이프로그 데이터를 이용한 치매 예측이 유효하며 해당 기술이 더 발전한다면 사회적과 경제적인 측면에서 많은 효과를 보일 수 있을 것이라고 기대합니다.</p>
+                          <p><strong>활용분야</strong></p>
+                          <p>해당 프로젝트를 통해 웨어러블 라이프로그 데이터가 단순히 사람의 심박수 같은 것만 재는 것이 아닌 치매예측, 더 나아가 다양한 질병예측에도 쓰일 수 있을 것이라고 기대합니다.</p>
+
+                          <h2>🔨 7. 한계점 및 향후 개선 방안</h2>
+
+                          <p><strong>- 데이터의 부족</strong></p>
+                          <p>공공데이터를 활용하면서, 특히 사람의 개인정보가 포함된 데이터의 한정적인 확보로 인해 과적합과 같은 결과가 나타난 것으로 보입니다. 이러한 상황에서는 데이터의 양적 부족으로 인한 모델의 성능 하락이 발생할 수 있습니다. → 데이터의 부족함을 보완하기 위해 SMOOTH와 같은 방법을 고려하여 데이터를 증가시켜 일반화 성능을 높이고자 함.</p>
+                          <p><strong>- 데이터 분석의 미흡</strong></p>
+                          <p>데이터 EDA을 통한 데이터의 특징으로 Scaling 처리를 진행함 → 데이터를 더 정교하게 비교하거나 LSTM 모델을 활용하여 중요한 데이터를 추출함으로써, 과적합을 방지하고 모델의 일반화 성능을 높이고자 함.</p>
+
+                          <h2>📜 8. 참고자료</h2>
+
+                          <ul>
+                              <li>Harold Hotelling, "Analysis of a Complex of Statistical Variables into Principal Components," Journal of Educational Psychology, Vol. 24, No. 7, pp. 498-520, 1933.</li>
+                              <li>Box, G. E. P., & Cox, D. R. (1964). An analysis of transformations. Journal of the Royal Statistical Society: Series B (Methodological), 26(2), 211-252.</li>
+                              <li>R.J. Hyndman and Y. Fan, "Sample Quantiles in Statistical Packages," The American Statistician, Vol. 50, No. 4, pp. 361-365, 1996.</li>
+                              <li>Rousseeuw, P.J., Croux, C. (1993). Alternatives to the Median Absolute Deviation. Journal of the American Statistical Association, Vol. 88, pp. 1273-1283.</li>
+                              <li>Leo Breiman, "Random Forests," Machine Learning, Vol. 45, No. 1, pp. 5-32, 2001.</li>
+                              <li>Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun. "Deep Residual Learning for Image Recognition", Proceedings of the IEEE conference on computer vision and pattern recognition, pp. 770-778, 2016.</li>
+                              <li>Diederik P Kingma, Max Welling. "Auto-Encoding Variational Bayes", International Conference on Learning Representations, 2014.</li>
+                              <li>Hochreiter, S., & Schmidhuber, J. (1997). Long short-term memory. Neural computation, 9(8), 1735-1780.</li>
+                              <li>LeCun, Y., Bottou, L., Bengio, Y., & Haffner, P. (1998). Gradient-based learning applied to ocument recognition. Proceedings of the IEEE, 86(11), 2278-2324.</li>
+                          </ul>
+                        </div>
                       </div>
+                      <!-- <div class="Projects_show-readme-btn__v1p__">
+                        자세히 보기 ▶ README
+                      </div> -->
                     </div>
                     <div class="Projects_description___gCV_">
                       <div class="Projects_label__OLO6p">주요 기능</div>
@@ -8014,9 +8339,160 @@
                       개념과 사용법을 익힐 수 있는 시간이었습니다.
 
                       <p></p>
-                      <div class="Projects_show-readme-btn__v1p__">
-                        자세히 보기 ▶ README
+                      <div class="Projects_show-readme-btn__v1p__" onclick="openModal('modal3')">자세히 보기 ▶ README</div>
+
+                      <!-- The Modal -->
+                      <div id="modal3" class="modal">
+
+                        <!-- Modal content -->
+                        <div class="modal-content">
+                          <span class="close" onclick="closeModal('modal3')">&times;</span>
+                          <!-- Modal Content Here -->
+                          <h1>👋 들어가며</h1>
+                          <p>본 포스팅은 <em>Visual SLAM 성능 개선을 위한 프로젝트</em>로 기존의 딥러닝 기술의 한계를 개선하기 위해 새로운 딥러닝 모델을 개발해 개선했습니다.</p>
+
+                          <h2>📚 목차</h2>
+                          <ol>
+                          <li>프로젝트 요약</li>
+                          <li>프로젝트 소개</li>
+                          <li>수행기간</li>
+                          <li>수행과정</li>
+                          <li>수행결과</li>
+                          <li>기대효과 활용분야</li>
+                          <li>한계점 및 향후 개선 방향</li>
+                          <li>참고자료</li>
+                          </ol>
+
+                          <h2>📌 1. 프로젝트 요약</h2>
+                          <p>모바일 로봇이 다양한 서비스 분야에서 활용되면서 비전 센서를 이용한 로봇의 정밀한 위치 추정이 널리 연구되고 있지만 실외 환경에서 모바일 로봇의 위치 추정 정확도는 <em>조도변화</em>에 영향을 받게 된다. 이를 극복하기 위해서 pix2pix, CycleGAN등의 딥러닝 모델을 이용하여 이미지를 변환하는 다양한 시도를 했다.</p>
+                          <ul>
+                          <li>기존 CycleGAN 구조에 변화를 주어 도메인의 변환을 통해 시간에 의존적인 이미지를 <em>독립적으로 개선</em>한다. 기존 이미지의 VO와 제안된 모델을 통과한 VO를 각각 비교, 후자의 VO가 더 높은 결과를 내도록 개선한다.</li>
+                          <li>로봇이 장기간 임무 수행 시, 동일한 장소를 일관성 있게 인식할 수 있게 하여 자율 주행 로봇의 <em>장기간 임무 수행</em>에 활용될 수 있게 된다.</li>
+                          </ul>
+
+                          <h2>🔎 2. 프로젝트 소개</h2>
+                          <p><strong>CycleSquareGAN : Image Translation for Long-term Robot Autonomy</strong></p>
+                          <p>본 프로젝트는 Visual Slam의 조도 변화에 따른 성능 변화를 딥러닝 기술을 이용해 줄이고, 더 나아가 Lidar Slam과 유사한 성능을 낼 수 있도록 개선한다.</p>
+                          <ul>
+                          <li><strong>프로젝트 달성 목표</strong></li>
+                          <ol>
+                          <li>기존 CycleGAN 구조에 변화를 주어 도메인의 변환을 통해 시간에 의존적인 이미지를 독립적으로 개선한다.</li>
+                          <li>기존 이미지의 VO와 제안된 모델을 통과한 VO를 각각 비교, 후자의 VO가 더 높은 결과를 내도록 개선한다.</li>
+                          <li>로봇이 장기간 임무 수행 시, 동일한 장소를 일관성 있게 인식할 수 있게 하여 자율 주행 로봇의 장기간 임무 수행에 활용될 수 있게 된다.</li>
+                          </ol>
+                          <li><strong>필요성 및 기대효과</strong></li>
+                          <ol>
+                          <li>모바일 로봇이 다양한 서비스 분야에서 활용되면서 비전 센서를 이용한 로봇의 정밀한 위치 추정이 널리 연구되고 있지만 실외 환경에서 모바일 로봇의 위치 추정 정확도는 <em>조도 변화</em>에 영향을 받게 된다. 이를 극복하기 위해서 pix2pix, CycleGAN 등의 딥러닝 모델을 이용하여 이미지를 변환하는 다양한 시도를 했다. Pix2Pix은 단일 이미지가 아니라 이미지 pair가 필요하기 때문에 <em>데이터를 구하기 어렵다는 단점</em>이 있음. CycleGAN은 <em>두 개의 도메인만 상호작용</em>할 수 있다는 단점이 존재한다.</li>
+                          <li>로봇이 장기간 미션 수행 시 동일한 장소를 <em>일관성 있게 인식</em>할 수 있도록 개선한다. 이를 통해 로봇은 시간에 의존적인 변수의 영향을 덜 받고 <em>일관성 있는 인식</em>을 할 수 있다. 따라서, 제안된 CycleSquareGAN 모델은 자율 주행 로봇의 장기간 미션 수행에 매우 유용하며, 안정적이고 신뢰할 수 있는 성능을 제공한다.</li>
+                          </ol>
+                          </ul>
+
+                          <h2>📔 3. 프로젝트 수행기간</h2>
+                          <img src="https://velog.velcdn.com/images/jingit/post/9c61c4b1-251b-4da5-b3d0-4a28638a2fa7/image.png" alt="프로젝트 수행기간">
+
+                          <h2>📌 4. 프로젝트 수행과정</h2>
+                          <h3>1) 데이터 수집 _ 학습 데이터 01</h3>
+                          <img src="https://velog.velcdn.com/images/jingit/post/644edec8-dea6-45b4-a78e-3e2105749867/image.png" alt="데이터 수집 01">
+                          <ul>
+                          <li>휴대폰 카메라, <code>intel D435i</code>를 이용, 학교근처와 다른 지역들을 촬영하여 <밤, 낮> 약 20만장 취득</li>
+                          <li>딥러닝 모델 학습 시, <em>과적합을 우려</em>하여 최대한 겹치는 부분과 적절하지 않은 사진들을 제외하여 낮과 밤 각각 3만장으로 추려서 사용</li>
+                          </ul>
+                          <h3>2) 데이터 수집 _ 학습 데이터 02</h3>
+                          <img src="https://velog.velcdn.com/images/jingit/post/15e310fb-87ef-4308-853c-fbee33dfd194/image.png" alt="데이터 수집 02">
+                          <ul>
+                          <li><code>SLAM</code>을 위한 Lidar, Visual 데이터는 강아지로봇(Unitree Go1)에 부착하여 촬영</li>
+                          <li>촬영은 충분히 어두운 23시 ~ 02시에 진행</li>
+                          </ul>
+                          <h3>3) 전처리 단계 : 데이터 스케일링</h3>
+                          <img src="https://velog.velcdn.com/images/jingit/post/b7c87ff2-0354-480f-bb41-cf03b8afd55a/image.png" alt="데이터 스케일링">
+                          <p>1. 원본 2. 선명화 마스크만 3. 이미지 정규화 및 전처리 과정 추가 4. 정규화 + 선명화 + 히스토그램 평활화 + 가우시안 블러</p>
+                          <ul>
+                          <li>각각 Case 별로 나눠 데이터를 전처리한 뒤 학습 모델에 학습 시켜 더 성능이 높은 방법을 연구</li>
+                          </ul>
+                          <p><em>※참고</em></p>
+                          <ul>
+                          <li>선명화 마스크: N * N의 행렬을 이용해 영상의 윤곽과 세부 정보를 강조.</li>
+                          <li>정규화: 일정한 밝기 변환.</li>
+                          <li>히스토그램 평활화(Histogram Equalization): 전체적인 명암 대비를 향상.</li>
+                          <li>가우시안 블러(Gaussian Blur): 노이즈 제거 및 이미지 스무싱.</li>
+                          </ul>
+
+                          <h3>4) 모델 개발 과정</h3>
+                          <p>1. StarGAN - 여러 시간 대의 이미지에 labeling 하여 모델을 사용해봤지만 성능 부족, labeling 문제.<br>
+                          2. Cycle-pix2pix : pix2pix를 CycleGAN과 같이 순환 구조로 시도. 일반화 성능 부족.<br>
+                          3. edge-pix2pix : 이미지에 edge를 검출하여 pix2pix에 적용. 일반화 성능 부족, 사진마다 edge 검출 기준 모호.<br>
+                          4. CycleSquareGAN : 기존 CycleGAN에 두 도메인의 중간 단계(Middle Space Bridge)를 생성하는 생성자 추가.<br>
+                          5. SSIM loss 추가 - Reconstruction error 계산 시 이미지 비교에 높은 성능을 보이는 SSIM loss 추가.<br>
+                          6. mid equal loss 추가(제거) - 입력 이미지와 생성된 이미지의 각 Middle Bridge Space가 서로 같다는 loss 식 추가하여 학습에 적용. Middle Bridge Space가 변하지 않는 문제 발생.<br>
+                          7. mid idt loss 추가(최종) - Middle Bridge Space에 대한 identity loss를 추가하여 모델에 Middle Bridge Space에 대한 영향력 증가.</p>
+
+                          <h4>예시) 3. 윤곽선</h4>
+                          <img src="https://velog.velcdn.com/images/jingit/post/da645930-e0e7-4510-87cb-80a1af243466/image.png" alt="윤곽선 모델 예시">
+                          <ul>
+                          <li>Real, Canny edge => 두 개의 도메인 학습</li>
+                          <li>결과: Fake와 Real의 차이가 있어 윤곽선 모델에는 한계가 존재합니다.</li>
+                          </ul>
+
+                          <h3>5) Model 개발 _ CycleSquareGAN Model</h3>
+                          <img src="https://velog.velcdn.com/images/jingit/post/2b487b25-3df3-4a7e-9893-ffe3992ce4c7/image.PNG" alt="CycleSquareGAN Model">
+                          <ul>
+                          <li>기존의 한계: 로봇의 24시간 업무 시, 모든 시간 대에 대한 조도 변화에도 일정한 업무가 가능해야 함.</li>
+                          <li>낮과 밤은 데이터를 구하기 쉽지만 비교적 짧은 시간의 새벽과 저녁은 데이터를 구하는데 제한적.</li>
+                          <li>기존의 CycleGan 모델에서 영감을 얻어 새로운 구조를 바탕으로 새로운 딥러닝 모델 개발</li>
+                          <li>이미지의 시간 대를 제거해 Middle Bridge Space의 상태로 만드는 CycleSquareGAN을 통해 낮과 밤의 이미지만으로도 다른 시간대의 이미지를 처리하도록 함.</li>
+                          </ul>
+
+                          <h3>6) Model 학습 과정</h3>
+                          <h4>Model Train</h4>
+                          <img src="https://velog.velcdn.com/images/jingit/post/f160ea38-52a0-4b9a-be48-b1a8655c31a4/image.png" alt="Model Train">
+                          <h4>Real Image -> Fake Image</h4>
+                          <img src="https://velog.velcdn.com/images/jingit/post/14c2a746-9772-421f-b500-4f05b0b22528/image.png" alt="Real to Fake Image">
+                          <h4>ORB SLAM 성능개선</h4>
+                          <img src="https://velog.velcdn.com/images/jingit/post/ef56537c-0219-46db-8bbe-d1ad690ba3a2/image.png" alt="ORB SLAM 성능개선">
+
+                          <h2>📌 5. 수행 결과</h2>
+                          <h4>기존의 딥러닝 모델과 성능 비교</h4>
+                          <img src="https://velog.velcdn.com/images/jingit/post/eb499d6b-367f-4abc-96d6-492ad89c6017/image.png" alt="딥러닝 모델 성능 비교">
+                          <p>- 개발한 모델의 성능이 비교적 성능이 더 높은 것으로 알 수 있습니다.</p>
+                          <h4>SLAM 결과</h4>
+                          <img src="https://velog.velcdn.com/images/jingit/post/719cac13-6a7d-429d-9395-67cac3faf7dd/image.png" alt="SLAM 결과 1">
+                          <img src="https://velog.velcdn.com/images/jingit/post/4feccdad-10f2-4052-9e02-7859091242f7/image.png" alt="SLAM 결과 2">
+                          <p>딥러닝을 이용하여 ORB_SLAM을 진행했을 때 성능이 더 높은 것을 볼 수 있습니다.</p>
+
+                          <h2>✏️ 6. 기대효과 및 활용 방안</h2>
+                          <ul>
+                          <li><strong>기대효과</strong>: 조도에 따른 성능저하 문제를 해결함으로써 Visual SLAM 기술은 자율주행 분야에서 혁신적인 성과를 이끌어낼 것으로 기대합니다. 주행 환경의 조명 변화에 강인한 시각적 위치 추적은 안정성과 신뢰성을 향상시키며, 자율주행 차량의 안전성을 보장하는 데 기여할 것으로 예상됩니다.</li>
+                          <li><strong>활용분야</strong>: 이 모델은 단순히 낮과 밤의 전환뿐만 아니라 다양한 시간대의 가상 이미지를 생성할 수 있어, 구글 지도나 다양한 자율주행 시뮬레이션에서 활용될 수 있습니다. 더불어, 도시 계획 및 건축 시뮬레이션에서도 다양한 시간대의 조명과 환경을 시각화하여 현실적인 모델링에 활용할 수 있을 것입니다. 이를 통해 실제 환경에서의 조명 변화에 대비한 안정적인 자율주행 시스템의 개발과 도시 계획에 새로운 시각을 제공할 수 있을 것입니다.</li>
+                          </ul>
+
+                          <h2>🔨 7. 한계점 및 향후 개선 방안</h2>
+                          <ul>
+                          <li><strong>Model</strong></li>
+                          <ol>
+                          <li>Middel Bridge Space의 활용방안에 대한 추가적인 연구가 필요하다. -> 향후 계속된 연구를 통해 활용방안 개선</li>
+                          <li>생성이미지의 해상도 개선이 필요하다. -> Parmeter 값 수정 등의 방법을 이용</li>
+                          <li>새로운 데이터 전처리 과정이 필요하다. -> 더 다양한 전처리 기법 수행</li>
+                          </ol>
+                          <li><strong>SLAM</strong></li>
+                          <ol>
+                          <li>영상을 이미지로 분할하는 과정에서 정보 유실이 발생해 연속적인 특징점 검출에 한계가 있다. -> 정보 유실 발생을 줄이기 위해 실시간 처리 수행</li>
+                          </ol>
+                          </ul>
+
+                          <h2>📜 8. 참고자료</h2>
+                          <ol>
+                          <li>Scaramuzza, D., Martinelli, A., & Siegwart, R. (2006). Visual Teach and Repeat for Mobile Robots. In Proceedings of the 2006 IEEE International Conference on Robotics and Automation (ICRA) (pp. 118-123).</li>
+                          <li>Lee, J. H., Lim, H., Park, C., & Kim, H. J. Effects of Illuminance Changes on Mobile Robot Localization Accuracy in Outdoor Environments. International Journal of Distributed Sensor Networks, 11(3), 925854.</li>
+                          <li>Isola, P., Zhu, J. Y., Zhou, T., & Efros, A. A. (2017). Image-to-image translation with conditional adversarial networks. In Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 3-15).</li>
+                          <li>Zhu, J. Y., Park, T., Isola, P., & Efros, A. A. (2017). Unpaired image-to-image translation using cycle-consistent adversarial networks. In Proceedings of the IEEE International Conference on Computer Vision (pp. 2223-2232).</li>
+                          <li>Wang, Z., Bovik, A. C., Sheikh, H. R., & Simoncelli, E. P. (2004). Image quality assessment: from error visibility to structural similarity. IEEE transactions on image processing, 13(4), 600-612.</li>
+                          </ol>
+                        </div>
+
                       </div>
+                      <!-- <div class="Projects_show-readme-btn__v1p__">
+                        자세히 보기 ▶ README
+                      </div> -->
                     </div>
                     <div class="Projects_description___gCV_">
                       <div class="Projects_label__OLO6p">주요 기능</div>
@@ -8203,13 +8679,10 @@
           </div>
         </article>
 
-        <div class="PageUpButton_PageUpButton__YZsBX PageUpButton_show__17G_A">
-          <img
-            class="PageUpButton_img__clyDT"
-            src="./Potfol_jingi/images/page-up.svg"
-            alt=""
-          />
+        <div class="PageUpButton_PageUpButton__YZsBX PageUpButton_show__17G_A" onclick="scrollToTop()">
+          <img class="PageUpButton_img__clyDT" src="./Potfol_jingi/images/page-up.svg" alt="">
         </div>
+
         <footer class="Footer_Footer__5wlgh">
           <div class="Footer_icons__sgt9s">
             <div
@@ -8242,6 +8715,13 @@
     </div>
     
     <script>
+      function scrollToTop() {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      }
+
       function navigateTo(sectionId) {
         // 해당 섹션의 DOM 요소를 가져옵니다.
         const section = document.getElementById(sectionId);
@@ -8255,6 +8735,28 @@
             top: offsetTop,
             behavior: 'smooth' // 부드러운 스크롤 효과를 적용합니다.
           });
+        }
+      }
+      function toggleMenu() {
+        var menu = document.querySelector('.Header_navigation-menus__p_A9O');
+        menu.classList.toggle('show');
+      }
+
+      function openModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.style.display = "block";
+      }
+      
+      // 모달 닫기 함수
+      function closeModal(modalId) {
+        var modal = document.getElementById(modalId);
+        modal.style.display = "none";
+      }
+      
+      // 창 밖 클릭 시 모달 닫기
+      window.onclick = function(event) {
+        if (event.target.className === "modal") {
+          event.target.style.display = "none";
         }
       }
     </script>

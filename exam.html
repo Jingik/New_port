@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>Visual SLAM 성능 개선을 위한 프로젝트</title>
+</head>
+<body>
+<h1>👋 들어가며</h1>
+<p>본 포스팅은 <em>Visual SLAM 성능 개선을 위한 프로젝트</em>로 기존의 딥러닝 기술의 한계를 개선하기 위해 새로운 딥러닝 모델을 개발해 개선했습니다.</p>
+
+<h2>📚 목차</h2>
+<ol>
+<li>프로젝트 요약</li>
+<li>프로젝트 소개</li>
+<li>수행기간</li>
+<li>수행과정</li>
+<li>수행결과</li>
+<li>기대효과 활용분야</li>
+<li>한계점 및 향후 개선 방향</li>
+<li>참고자료</li>
+</ol>
+
+<h2>📌 1. 프로젝트 요약</h2>
+<p>모바일 로봇이 다양한 서비스 분야에서 활용되면서 비전 센서를 이용한 로봇의 정밀한 위치 추정이 널리 연구되고 있지만 실외 환경에서 모바일 로봇의 위치 추정 정확도는 <em>조도변화</em>에 영향을 받게 된다. 이를 극복하기 위해서 pix2pix, CycleGAN등의 딥러닝 모델을 이용하여 이미지를 변환하는 다양한 시도를 했다.</p>
+<ul>
+<li>기존 CycleGAN 구조에 변화를 주어 도메인의 변환을 통해 시간에 의존적인 이미지를 <em>독립적으로 개선</em>한다. 기존 이미지의 VO와 제안된 모델을 통과한 VO를 각각 비교, 후자의 VO가 더 높은 결과를 내도록 개선한다.</li>
+<li>로봇이 장기간 임무 수행 시, 동일한 장소를 일관성 있게 인식할 수 있게 하여 자율 주행 로봇의 <em>장기간 임무 수행</em>에 활용될 수 있게 된다.</li>
+</ul>
+
+<h2>🔎 2. 프로젝트 소개</h2>
+<p><strong>CycleSquareGAN : Image Translation for Long-term Robot Autonomy</strong></p>
+<p>본 프로젝트는 Visual Slam의 조도 변화에 따른 성능 변화를 딥러닝 기술을 이용해 줄이고, 더 나아가 Lidar Slam과 유사한 성능을 낼 수 있도록 개선한다.</p>
+<ul>
+<li><strong>프로젝트 달성 목표</strong></li>
+<ol>
+<li>기존 CycleGAN 구조에 변화를 주어 도메인의 변환을 통해 시간에 의존적인 이미지를 독립적으로 개선한다.</li>
+<li>기존 이미지의 VO와 제안된 모델을 통과한 VO를 각각 비교, 후자의 VO가 더 높은 결과를 내도록 개선한다.</li>
+<li>로봇이 장기간 임무 수행 시, 동일한 장소를 일관성 있게 인식할 수 있게 하여 자율 주행 로봇의 장기간 임무 수행에 활용될 수 있게 된다.</li>
+</ol>
+<li><strong>필요성 및 기대효과</strong></li>
+<ol>
+<li>모바일 로봇이 다양한 서비스 분야에서 활용되면서 비전 센서를 이용한 로봇의 정밀한 위치 추정이 널리 연구되고 있지만 실외 환경에서 모바일 로봇의 위치 추정 정확도는 <em>조도 변화</em>에 영향을 받게 된다. 이를 극복하기 위해서 pix2pix, CycleGAN 등의 딥러닝 모델을 이용하여 이미지를 변환하는 다양한 시도를 했다. Pix2Pix은 단일 이미지가 아니라 이미지 pair가 필요하기 때문에 <em>데이터를 구하기 어렵다는 단점</em>이 있음. CycleGAN은 <em>두 개의 도메인만 상호작용</em>할 수 있다는 단점이 존재한다.</li>
+<li>로봇이 장기간 미션 수행 시 동일한 장소를 <em>일관성 있게 인식</em>할 수 있도록 개선한다. 이를 통해 로봇은 시간에 의존적인 변수의 영향을 덜 받고 <em>일관성 있는 인식</em>을 할 수 있다. 따라서, 제안된 CycleSquareGAN 모델은 자율 주행 로봇의 장기간 미션 수행에 매우 유용하며, 안정적이고 신뢰할 수 있는 성능을 제공한다.</li>
+</ol>
+</ul>
+
+<h2>📔 3. 프로젝트 수행기간</h2>
+<img src="https://velog.velcdn.com/images/jingit/post/9c61c4b1-251b-4da5-b3d0-4a28638a2fa7/image.png" alt="프로젝트 수행기간">
+
+<h2>📌 4. 프로젝트 수행과정</h2>
+<h3>1) 데이터 수집 _ 학습 데이터 01</h3>
+<img src="https://velog.velcdn.com/images/jingit/post/644edec8-dea6-45b4-a78e-3e2105749867/image.png" alt="데이터 수집 01">
+<ul>
+<li>휴대폰 카메라, <code>intel D435i</code>를 이용, 학교근처와 다른 지역들을 촬영하여 <밤, 낮> 약 20만장 취득</li>
+<li>딥러닝 모델 학습 시, <em>과적합을 우려</em>하여 최대한 겹치는 부분과 적절하지 않은 사진들을 제외하여 낮과 밤 각각 3만장으로 추려서 사용</li>
+</ul>
+<h3>2) 데이터 수집 _ 학습 데이터 02</h3>
+<img src="https://velog.velcdn.com/images/jingit/post/15e310fb-87ef-4308-853c-fbee33dfd194/image.png" alt="데이터 수집 02">
+<ul>
+<li><code>SLAM</code>을 위한 Lidar, Visual 데이터는 강아지로봇(Unitree Go1)에 부착하여 촬영</li>
+<li>촬영은 충분히 어두운 23시 ~ 02시에 진행</li>
+</ul>
+<h3>3) 전처리 단계 : 데이터 스케일링</h3>
+<img src="https://velog.velcdn.com/images/jingit/post/b7c87ff2-0354-480f-bb41-cf03b8afd55a/image.png" alt="데이터 스케일링">
+<p>1. 원본 2. 선명화 마스크만 3. 이미지 정규화 및 전처리 과정 추가 4. 정규화 + 선명화 + 히스토그램 평활화 + 가우시안 블러</p>
+<ul>
+<li>각각 Case 별로 나눠 데이터를 전처리한 뒤 학습 모델에 학습 시켜 더 성능이 높은 방법을 연구</li>
+</ul>
+<p><em>※참고</em></p>
+<ul>
+<li>선명화 마스크: N * N의 행렬을 이용해 영상의 윤곽과 세부 정보를 강조.</li>
+<li>정규화: 일정한 밝기 변환.</li>
+<li>히스토그램 평활화(Histogram Equalization): 전체적인 명암 대비를 향상.</li>
+<li>가우시안 블러(Gaussian Blur): 노이즈 제거 및 이미지 스무싱.</li>
+</ul>
+
+<h3>4) 모델 개발 과정</h3>
+<p>1. StarGAN - 여러 시간 대의 이미지에 labeling 하여 모델을 사용해봤지만 성능 부족, labeling 문제.<br>
+2. Cycle-pix2pix : pix2pix를 CycleGAN과 같이 순환 구조로 시도. 일반화 성능 부족.<br>
+3. edge-pix2pix : 이미지에 edge를 검출하여 pix2pix에 적용. 일반화 성능 부족, 사진마다 edge 검출 기준 모호.<br>
+4. CycleSquareGAN : 기존 CycleGAN에 두 도메인의 중간 단계(Middle Space Bridge)를 생성하는 생성자 추가.<br>
+5. SSIM loss 추가 - Reconstruction error 계산 시 이미지 비교에 높은 성능을 보이는 SSIM loss 추가.<br>
+6. mid equal loss 추가(제거) - 입력 이미지와 생성된 이미지의 각 Middle Bridge Space가 서로 같다는 loss 식 추가하여 학습에 적용. Middle Bridge Space가 변하지 않는 문제 발생.<br>
+7. mid idt loss 추가(최종) - Middle Bridge Space에 대한 identity loss를 추가하여 모델에 Middle Bridge Space에 대한 영향력 증가.</p>
+
+<h4>예시) 3. 윤곽선</h4>
+<img src="https://velog.velcdn.com/images/jingit/post/da645930-e0e7-4510-87cb-80a1af243466/image.png" alt="윤곽선 모델 예시">
+<ul>
+<li>Real, Canny edge => 두 개의 도메인 학습</li>
+<li>결과: Fake와 Real의 차이가 있어 윤곽선 모델에는 한계가 존재합니다.</li>
+</ul>
+
+<h3>5) Model 개발 _ CycleSquareGAN Model</h3>
+<img src="https://velog.velcdn.com/images/jingit/post/2b487b25-3df3-4a7e-9893-ffe3992ce4c7/image.PNG" alt="CycleSquareGAN Model">
+<ul>
+<li>기존의 한계: 로봇의 24시간 업무 시, 모든 시간 대에 대한 조도 변화에도 일정한 업무가 가능해야 함.</li>
+<li>낮과 밤은 데이터를 구하기 쉽지만 비교적 짧은 시간의 새벽과 저녁은 데이터를 구하는데 제한적.</li>
+<li>기존의 CycleGan 모델에서 영감을 얻어 새로운 구조를 바탕으로 새로운 딥러닝 모델 개발</li>
+<li>이미지의 시간 대를 제거해 Middle Bridge Space의 상태로 만드는 CycleSquareGAN을 통해 낮과 밤의 이미지만으로도 다른 시간대의 이미지를 처리하도록 함.</li>
+</ul>
+
+<h3>6) Model 학습 과정</h3>
+<h4>Model Train</h4>
+<img src="https://velog.velcdn.com/images/jingit/post/f160ea38-52a0-4b9a-be48-b1a8655c31a4/image.png" alt="Model Train">
+<h4>Real Image -> Fake Image</h4>
+<img src="https://velog.velcdn.com/images/jingit/post/14c2a746-9772-421f-b500-4f05b0b22528/image.png" alt="Real to Fake Image">
+<h4>ORB SLAM 성능개선</h4>
+<img src="https://velog.velcdn.com/images/jingit/post/ef56537c-0219-46db-8bbe-d1ad690ba3a2/image.png" alt="ORB SLAM 성능개선">
+
+<h2>📌 5. 수행 결과</h2>
+<h4>기존의 딥러닝 모델과 성능 비교</h4>
+<img src="https://velog.velcdn.com/images/jingit/post/eb499d6b-367f-4abc-96d6-492ad89c6017/image.png" alt="딥러닝 모델 성능 비교">
+<p>- 개발한 모델의 성능이 비교적 성능이 더 높은 것으로 알 수 있습니다.</p>
+<h4>SLAM 결과</h4>
+<img src="https://velog.velcdn.com/images/jingit/post/719cac13-6a7d-429d-9395-67cac3faf7dd/image.png" alt="SLAM 결과 1">
+<img src="https://velog.velcdn.com/images/jingit/post/4feccdad-10f2-4052-9e02-7859091242f7/image.png" alt="SLAM 결과 2">
+<p>딥러닝을 이용하여 ORB_SLAM을 진행했을 때 성능이 더 높은 것을 볼 수 있습니다.</p>
+
+<h2>✏️ 6. 기대효과 및 활용 방안</h2>
+<ul>
+<li><strong>기대효과</strong>: 조도에 따른 성능저하 문제를 해결함으로써 Visual SLAM 기술은 자율주행 분야에서 혁신적인 성과를 이끌어낼 것으로 기대합니다. 주행 환경의 조명 변화에 강인한 시각적 위치 추적은 안정성과 신뢰성을 향상시키며, 자율주행 차량의 안전성을 보장하는 데 기여할 것으로 예상됩니다.</li>
+<li><strong>활용분야</strong>: 이 모델은 단순히 낮과 밤의 전환뿐만 아니라 다양한 시간대의 가상 이미지를 생성할 수 있어, 구글 지도나 다양한 자율주행 시뮬레이션에서 활용될 수 있습니다. 더불어, 도시 계획 및 건축 시뮬레이션에서도 다양한 시간대의 조명과 환경을 시각화하여 현실적인 모델링에 활용할 수 있을 것입니다. 이를 통해 실제 환경에서의 조명 변화에 대비한 안정적인 자율주행 시스템의 개발과 도시 계획에 새로운 시각을 제공할 수 있을 것입니다.</li>
+</ul>
+
+<h2>🔨 7. 한계점 및 향후 개선 방안</h2>
+<ul>
+<li><strong>Model</strong></li>
+<ol>
+<li>Middel Bridge Space의 활용방안에 대한 추가적인 연구가 필요하다. -> 향후 계속된 연구를 통해 활용방안 개선</li>
+<li>생성이미지의 해상도 개선이 필요하다. -> Parmeter 값 수정 등의 방법을 이용</li>
+<li>새로운 데이터 전처리 과정이 필요하다. -> 더 다양한 전처리 기법 수행</li>
+</ol>
+<li><strong>SLAM</strong></li>
+<ol>
+<li>영상을 이미지로 분할하는 과정에서 정보 유실이 발생해 연속적인 특징점 검출에 한계가 있다. -> 정보 유실 발생을 줄이기 위해 실시간 처리 수행</li>
+</ol>
+</ul>
+
+<h2>📜 8. 참고자료</h2>
+<ol>
+<li>Scaramuzza, D., Martinelli, A., & Siegwart, R. (2006). Visual Teach and Repeat for Mobile Robots. In Proceedings of the 2006 IEEE International Conference on Robotics and Automation (ICRA) (pp. 118-123).</li>
+<li>Lee, J. H., Lim, H., Park, C., & Kim, H. J. Effects of Illuminance Changes on Mobile Robot Localization Accuracy in Outdoor Environments. International Journal of Distributed Sensor Networks, 11(3), 925854.</li>
+<li>Isola, P., Zhu, J. Y., Zhou, T., & Efros, A. A. (2017). Image-to-image translation with conditional adversarial networks. In Proceedings of the IEEE conference on computer vision and pattern recognition (pp. 3-15).</li>
+<li>Zhu, J. Y., Park, T., Isola, P., & Efros, A. A. (2017). Unpaired image-to-image translation using cycle-consistent adversarial networks. In Proceedings of the IEEE International Conference on Computer Vision (pp. 2223-2232).</li>
+<li>Wang, Z., Bovik, A. C., Sheikh, H. R., & Simoncelli, E. P. (2004). Image quality assessment: from error visibility to structural similarity. IEEE transactions on image processing, 13(4), 600-612.</li>
+</ol>
+
+</body>
+</html>
