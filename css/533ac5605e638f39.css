@@ -69,6 +69,15 @@
   .Header_navigation-menu__8vdQ1:hover {
   color: #fff;
 }
+
+/* 새로 추가 */
+
+.Header_content__FPfsl {
+  display: flex;
+  justify-content: space-between; /* 좌우 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+}
+
 .Header_Header__bkfyR .Header_content__FPfsl .Header_hamburger-wrapper__aAWlM {
   float: right;
   box-sizing: border-box;

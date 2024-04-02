@@ -7281,6 +7281,35 @@
       <div id="root">
         <header class="Header_Header__bkfyR Header_has-background-color__iWD1w">
           <div class="Header_content__FPfsl">
+            <div class="Header_title__u692O">
+              Jingi's Portfolio
+            </div>
+            <div class="Header_menu-wrapper__aNr7L">
+              <div class="Header_folded-navigation-menus__xgZIW Header_is-folded__drE3y">
+                <div class="Header_folded-navigation-menu__tCpbH" onclick="navigateTo('about-me')">About me</div>
+                <div class="Header_folded-navigation-menu__tCpbH" onclick="navigateTo('skills')">Skills</div>
+                <div class="Header_folded-navigation-menu__tCpbH" onclick="navigateTo('archiving')">Archiving</div>
+                <div class="Header_folded-navigation-menu__tCpbH" onclick="navigateTo('projects')">Projects</div>
+                <div class="Header_folded-navigation-menu__tCpbH" onclick="navigateTo('career')">Career</div>
+              </div>
+              <div class="Header_navigation-menus__p_A9O">
+                <div class="Header_navigation-menu__8vdQ1" onclick="navigateTo('about-me')">About me</div>
+                <div class="Header_navigation-menu__8vdQ1" onclick="navigateTo('skills')">Skills</div>
+                <div class="Header_navigation-menu__8vdQ1" onclick="navigateTo('archiving')">Archiving</div>
+                <div class="Header_navigation-menu__8vdQ1" onclick="navigateTo('projects')">Projects</div>
+                <div class="Header_navigation-menu__8vdQ1" onclick="navigateTo('career')">Career</div>
+              </div>
+            </div>
+            <div class="Header_hamburger-wrapper__aAWlM">
+              <img src="./Potfol_jingi/images/hamburger.svg" alt="" />
+            </div>
+          </div>
+        </header>
+        
+        
+        
+        <!-- <header class="Header_Header__bkfyR Header_has-background-color__iWD1w">
+          <div class="Header_content__FPfsl">
             <div class="Header_title__u692O">Jingi's Portfolio</div>
             <div class="Header_hamburger-wrapper__aAWlM">
               <img src="./Potfol_jingi/images/hamburger.svg" alt="" />
@@ -7296,7 +7325,7 @@
             <div class="Header_folded-navigation-menu__tCpbH">Projects</div>
             <div class="Header_folded-navigation-menu__tCpbH">Career</div>
           </div>
-        </header>
+        </header> -->
 
         <div class="Masthead_Masthead__AqKEv">
           <div class="Masthead_content__lswMP">
@@ -8211,6 +8240,25 @@
         </footer>
       </div>
     </div>
+    
+    <script>
+      function navigateTo(sectionId) {
+        // 해당 섹션의 DOM 요소를 가져옵니다.
+        const section = document.getElementById(sectionId);
+        
+        if (section) {
+          // 해당 섹션의 상단 위치를 계산합니다.
+          const offsetTop = section.offsetTop;
+          
+          // 페이지를 해당 섹션으로 스크롤합니다.
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth' // 부드러운 스크롤 효과를 적용합니다.
+          });
+        }
+      }
+    </script>
+
     <next-route-announcer
       ><p
         aria-live="assertive"
