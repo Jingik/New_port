@@ -7722,30 +7722,17 @@
                           alt=""
                         />
                       </div>
-                      <!-- <div class="Projects_img-wrapper__0b8Tt">
-                        <img
-                          class="Projects_img__OAyqd"
-                          src="./images/projects/timebox/3.jpg"
-                          alt=""
-                        />
-                      </div> -->
                     </div>
-                    <!-- 이미지 넘기는 바 -->
+
                     <nav class="Projects_nav__Inoba">
-                      <div class="Projects_prev__wS3_z">
-                        <img
-                          src="./Potfol_jingi/images/arrow-left.svg"
-                          alt=""
-                        />
+                      <div class="Projects_prev__wS3_z" onclick="prevImage()">
+                          <img src="./Potfol_jingi/images/arrow-left.svg" alt="Previous" />
                       </div>
-                      <div class="Projects_page__zHIqO">1/2</div>
-                      <div class="Projects_next__3RYWe">
-                        <img
-                          src="./Potfol_jingi/images/arrow-right.svg"
-                          alt=""
-                        />
+                      <div class="Projects_page__zHIqO">1/3</div>
+                      <div class="Projects_next__3RYWe" onclick="nextImage()">
+                          <img src="./Potfol_jingi/images/arrow-right.svg" alt="Next" />
                       </div>
-                    </nav>
+                  </nav>
                   </div>
                   <div class="Projects_descriptions__2g3bi">
                     <div class="Projects_main-description__JVRu1">
@@ -8019,6 +8006,16 @@
                     </div>
                     <!-- 창 넘기는 바 -->
                     <nav class="Projects_nav__Inoba">
+                      <div class="Projects_prev__wS3_z" onclick="prevImage()">
+                          <img src="./Potfol_jingi/images/arrow-left.svg" alt="Previous" />
+                      </div>
+                      <div class="Projects_page__zHIqO">1/3</div>
+                      <div class="Projects_next__3RYWe" onclick="nextImage()">
+                          <img src="./Potfol_jingi/images/arrow-right.svg" alt="Next" />
+                      </div>
+                  </nav>
+
+                    <!-- <nav class="Projects_nav__Inoba">
                       <div class="Projects_prev__wS3_z">
                         <img
                           src="./Potfol_jingi/images/arrow-left.svg"
@@ -8032,7 +8029,7 @@
                           alt=""
                         />
                       </div>
-                    </nav>
+                    </nav> -->
                   </div>
                   <div class="Projects_descriptions__2g3bi">
                     <div class="Projects_main-description__JVRu1">
@@ -8194,9 +8191,6 @@
                           </ul>
                         </div>
                       </div>
-                      <!-- <div class="Projects_show-readme-btn__v1p__">
-                        자세히 보기 ▶ README
-                      </div> -->
                     </div>
                     <div class="Projects_description___gCV_">
                       <div class="Projects_label__OLO6p">주요 기능</div>
@@ -8296,6 +8290,15 @@
                       </div>
                     </div>
                     <nav class="Projects_nav__Inoba">
+                      <div class="Projects_prev__wS3_z" onclick="prevImage()">
+                          <img src="./Potfol_jingi/images/arrow-left.svg" alt="Previous" />
+                      </div>
+                      <div class="Projects_page__zHIqO">1/3</div>
+                      <div class="Projects_next__3RYWe" onclick="nextImage()">
+                          <img src="./Potfol_jingi/images/arrow-right.svg" alt="Next" />
+                      </div>
+                    </nav>
+                    <!-- <nav class="Projects_nav__Inoba">
                       <div class="Projects_prev__wS3_z">
                         <img
                           src="./Potfol_jingi/images/arrow-left.svg"
@@ -8309,7 +8312,7 @@
                           alt=""
                         />
                       </div>
-                    </nav>
+                    </nav> -->
                   </div>
                   <div class="Projects_descriptions__2g3bi">
                     <div class="Projects_main-description__JVRu1">
@@ -8759,6 +8762,89 @@
           event.target.style.display = "none";
         }
       }
+
+      const carousels = document.querySelectorAll('.Projects_img-carousel__e8hwy');
+
+      carousels.forEach(carousel => {
+        let currentPosition = 0;
+        let imageWidth = carousel.querySelector('.Projects_img-wrapper__0b8Tt').offsetWidth;
+        let numImages = carousel.querySelectorAll('.Projects_img-wrapper__0b8Tt').length;
+        let totalPages = Math.ceil(numImages);
+
+        function adjustImageWidth() {
+          imageWidth = carousel.querySelector('.Projects_img-wrapper__0b8Tt').offsetWidth;
+        }
+
+        function prevImage() {
+          adjustImageWidth();
+          if (currentPosition === 0) {
+            return;
+          }
+          currentPosition += imageWidth;
+          carousel.querySelector('.Projects_imgs__datEq').style.left = `${currentPosition}px`;
+          updatePageIndicator();
+        }
+
+        function nextImage() {
+          adjustImageWidth();
+          if (currentPosition === -((totalPages - 1) * imageWidth)) {
+            return;
+          }
+          currentPosition -= imageWidth;
+          carousel.querySelector('.Projects_imgs__datEq').style.left = `${currentPosition}px`;
+          updatePageIndicator();
+        }
+
+        function updatePageIndicator() {
+          const currentPage = Math.abs(currentPosition / imageWidth) + 1;
+          carousel.querySelector('.Projects_page__zHIqO').textContent = `${currentPage}/${totalPages}`;
+        }
+
+        // 페이지 로딩 후 초기화
+        window.onload = function() {
+          adjustImageWidth();
+          carousel.querySelector('.Projects_imgs__datEq').style.left = '0px';
+          updatePageIndicator();
+        };
+
+        carousel.querySelector('.Projects_prev__wS3_z').addEventListener('click', prevImage);
+        carousel.querySelector('.Projects_next__3RYWe').addEventListener('click', nextImage);
+      });
+
+
+
+
+      // 이미지를 클릭하여 큰 창에 이미지를 중앙 정렬하여 표시하고, 다시 클릭하여 창을 닫기
+      const images = document.querySelectorAll('.Projects_img__OAyqd');
+
+      images.forEach(image => {
+        let isOpen = false;
+        let popupWindow;
+
+        image.addEventListener('click', function() {
+          if (!isOpen) {
+            const imageUrl = this.getAttribute('src');
+            const windowWidth = window.innerWidth * 0.8; // 창의 너비를 화면의 80%로 설정
+            const windowHeight = window.innerHeight * 0.8; // 창의 높이를 화면의 80%로 설정
+            const left = (window.innerWidth - windowWidth) / 2; // 창을 화면 가로 중앙에 위치
+            const top = (window.innerHeight - windowHeight) / 2; // 창을 화면 세로 중앙에 위치
+
+            popupWindow = window.open('', '_blank', `width=${windowWidth}, height=${windowHeight}, left=${left}, top=${top}`);
+            popupWindow.document.write(`<div style="display: flex; justify-content: center; align-items: center; height: 100%;"><img src="${imageUrl}" style="max-width: 100%; max-height: 100%;"></div>`);
+            isOpen = true;
+
+            // 팝업 창을 클릭하여 창을 닫기
+            popupWindow.document.addEventListener('click', function() {
+              popupWindow.close();
+              isOpen = false;
+            });
+          }
+        });
+      });
+
+
+
+
     </script>
 
     <next-route-announcer
